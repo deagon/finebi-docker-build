@@ -10,7 +10,9 @@ RUN echo "Asia/Shanghai" > /etc/timezone \
 
 WORKDIR /opt
 
-ADD linux_unix_FineBI4_1-CN.sh /opt/linux_unix_FineBI4_1-CN.sh
+ARG finebi_url=http://down.finereport.com/linux_unix_FineBI4_1-CN.sh
+
+RUN curl -fsSL ${finebi_url} -o /opt/linux_unix_FineBI4_1-CN.sh
 
 RUN bash -c '/bin/echo -e "\n\n\n\n1\n\n30720\n\n\nn\nn\n" | bash linux_unix_FineBI4_1-CN.sh'
 
